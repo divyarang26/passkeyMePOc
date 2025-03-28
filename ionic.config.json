@@ -1,0 +1,7 @@
+{
+  "name": "passkeyPOC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
