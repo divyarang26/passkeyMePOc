@@ -17,6 +17,7 @@ const Tab1: React.FC = () => {
         let username = "divyarang";
         let displayName = "fortesting";
     console.log('Current Origin:', window.location.origin);
+    console.log("divya rang")
 
 
       const startResponse = await axios.post(
@@ -25,9 +26,15 @@ const Tab1: React.FC = () => {
         { headers: { 'x-api-key': API_KEY, 'Content-Type': 'application/json' } }
       );
 
+      console.log("🚀 ~ Tab1.tsx:29 ~ registerPasskey ~ startResponse:", startResponse);
+
+
 
 
       const { credential } = await PasskeymeSDK.passkeyRegister({ challenge: startResponse.data.challenge });
+
+
+      console.log("🚀 ~ Tab1.tsx:34 ~ registerPasskey ~ credential:", credential);
 
 
       const completeResponse = await axios.post(
