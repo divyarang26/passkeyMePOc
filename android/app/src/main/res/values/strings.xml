@@ -6,15 +6,13 @@
     <string name="custom_url_scheme">io.ionic.starter</string>
      <string name="app_id">cad7760b-3ee4-4df8-b7b4-73cdeaff0774</string>
     <string name="api_key">36LP0Z0frQaYgqduOXl6fjW0llIhQNXr</string>
-    <string name="asset_statements">
-    [
-        {
-            "relation": ["delegate_permission/common.handle_all_urls"],
-            "target": {
-                "namespace": "android_app",
-                "site": "https://802a-2409-40c4-342-ddf8-c7bf-5f59-5f7b-b395.ngrok-free.app"
+        <string name="asset_statements">
+        [{
+            \"relation\": [\"delegate_permission/common.handle_all_urls\"],
+            \"target\": {
+                \"namespace\": \"android_app\",
+                \"site\": \"https://9ead-110-227-204-245.ngrok-free.app\"
             }
         }
-    ]
-</string>
+        </string>
 </resources>

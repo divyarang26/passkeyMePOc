@@ -26,7 +26,7 @@ const Tab1: React.FC = () => {
         { headers: { 'x-api-key': API_KEY, 'Content-Type': 'application/json' } }
       );
 
-      console.log("🚀 ~ Tab1.tsx:29 ~ registerPasskey ~ startResponse:", startResponse);
+      console.log("🚀 ~ Tab1.tsx:29 ~ registerPasskey ~ startResponse: 3333", startResponse);
 
 
 

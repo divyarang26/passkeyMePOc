@@ -23,8 +23,8 @@
     <category android:name="android.intent.category.DEFAULT" />
     <category android:name="android.intent.category.BROWSABLE" />
     <data android:scheme="https"
-          android:host="802a-2409-40c4-342-ddf8-c7bf-5f59-5f7b-b395.ngrok-free.app"
-          android:pathPrefix="/tab1" />
+          android:host="9ead-110-227-204-245.ngrok-free.app"
+          android:pathPrefix="/tab1"/>
 </intent-filter>
 
             <intent-filter>
