@@ -3,12 +3,15 @@ import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 import { PasskeymeSDK } from 'passkeyme-ionic-cap-plugin';
 import axios from "axios";
+import { useState } from 'react';
 
 const API_URL = "https://passkeyme.com";
 const APP_UUID = "cad7760b-3ee4-4df8-b7b4-73cdeaff0774"; 
 const API_KEY = "36LP0Z0frQaYgqduOXl6fjW0llIhQNXr";
 
 const Tab1: React.FC = () => {
+
+  const [msg , setMsg] = useState("msgcredential")
 
   async function registerPasskey() {
         
@@ -25,14 +28,14 @@ const Tab1: React.FC = () => {
         { username, displayName },
         { headers: { 'x-api-key': API_KEY, 'Content-Type': 'application/json' } }
       );
-
-      console.log("🚀 ~ Tab1.tsx:29 ~ registerPasskey ~ startResponse: 3333", startResponse);
-
-
-
-
+      
+      
+      
+      
+      
       const { credential } = await PasskeymeSDK.passkeyRegister({ challenge: startResponse.data.challenge });
-
+      
+      setMsg(JSON.stringify(credential));
 
       console.log("🚀 ~ Tab1.tsx:34 ~ registerPasskey ~ credential:", credential);
 
@@ -42,6 +45,9 @@ const Tab1: React.FC = () => {
         { username, credential },
         { headers: { 'x-api-key': API_KEY, 'Content-Type': 'application/json' } }
       );
+
+      console.log("🚀 ~ Tab1.tsx:49 ~ registerPasskey ~ completeResponse:", completeResponse);
+
 
 
 
@@ -68,6 +74,8 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonButton onClick={registerPasskey}>generate passkey</IonButton>
+
+        <IonTitle>{msg}</IonTitle>
       </IonContent>
     </IonPage>
   );

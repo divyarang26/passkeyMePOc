@@ -5,9 +5,9 @@ const config: CapacitorConfig = {
   appName: 'passkeyPOC',
   webDir: 'dist',
   bundledWebRuntime: false,
-    server: {
-    url: 'https://9ead-110-227-204-245.ngrok-free.app/', // Remove or comment this line
-  },
+  //   server: {
+  //   url: 'https://0e72-110-227-204-245.ngrok-free.app/', // Remove or comment this line
+  // },
 };
 
 export default config;
