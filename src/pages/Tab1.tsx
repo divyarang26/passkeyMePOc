@@ -4,6 +4,11 @@ import './Tab1.css';
 import { PasskeymeSDK } from 'passkeyme-ionic-cap-plugin';
 import axios from "axios";
 import { useState } from 'react';
+import { getPublicKeys } from "../utils/webauthnUtils";
+
+// import * as cbor from 'cbor';
+
+import * as cbor from 'cbor-web'; // Or 'cbor' if using a bundler and cbor
 
 const API_URL = "https://passkeyme.com";
 const APP_UUID = "cad7760b-3ee4-4df8-b7b4-73cdeaff0774"; 
@@ -16,11 +21,8 @@ const Tab1: React.FC = () => {
   async function registerPasskey() {
         
     try {
-
         let username = "divyarang";
         let displayName = "fortesting";
-    console.log('Current Origin:', window.location.origin);
-    console.log("divya rang")
 
 
       const startResponse = await axios.post(
@@ -30,15 +32,19 @@ const Tab1: React.FC = () => {
       );
       
       
-      
-      
-      
       const { credential } = await PasskeymeSDK.passkeyRegister({ challenge: startResponse.data.challenge });
       
-      setMsg(JSON.stringify(credential));
+      setMsg(JSON.parse(credential));
 
-      console.log("🚀 ~ Tab1.tsx:34 ~ registerPasskey ~ credential:", credential);
+      console.log("🚀 ~ Tab1.tsx:34 ~ registerPasskey ~ credential:", JSON.parse(credential));
+      window.localStorage.setItem("creden",credential);
 
+      const { contractSalt, publicKey } = await getPublicKeys(JSON.parse(credential));
+
+
+      console.log("🚀 ~ Tab1.tsx:45 ~ registerPasskey ~ contractSalt:", contractSalt);
+
+      console.log("🚀 ~ PasskeyRegister.jsx:96 ~ registerPasskey ~ publicKey:", publicKey);
 
       const completeResponse = await axios.post(
         `${API_URL}/webauthn/${APP_UUID}/complete_registration`, 
@@ -58,6 +64,23 @@ const Tab1: React.FC = () => {
   };
 
 
+  async function test() {
+   let data =  window.localStorage.getItem("creden")
+
+   console.log("🚀 ~ Tab1.tsx:70 ~ test ~ data:", JSON.stringify(data));
+   const { contractSalt, publicKey } = await getPublicKeys(JSON.parse(data ? data : "" ));
+
+
+   console.log("🚀 ~ Tab1.tsx:74 ~ test ~ publicKey:", publicKey);
+
+
+   console.log("🚀 ~ Tab1.tsx:74 ~ test ~ contractSalt:", contractSalt);
+
+
+  }
+  
+  
+
 
 
   return (
@@ -74,6 +97,8 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonButton onClick={registerPasskey}>generate passkey</IonButton>
+        <IonButton onClick={test}>test</IonButton>
+
 
         <IonTitle>{msg}</IonTitle>
       </IonContent>
